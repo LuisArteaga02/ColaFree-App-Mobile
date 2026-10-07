@@ -1,18 +1,27 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
+import { Stack, ThemeProvider, DefaultTheme } from 'expo-router';
 import { useColorScheme } from 'react-native';
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
-
-SplashScreen.preventAutoHideAsync();
-
-export default function TabLayout() {
+export default function Layout() {
   const colorScheme = useColorScheme();
+
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
+    <ThemeProvider value={DefaultTheme}>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="home" />
+        <Stack.Screen name="scanner" />
+        <Stack.Screen name="queue-select" />
+        <Stack.Screen name="queue-detail" />
+        <Stack.Screen name="ticket-created" />
+        <Stack.Screen name="ticket-active" />
+        <Stack.Screen name="ticket-called" />
+        <Stack.Screen name="ticket-in-service" />
+        <Stack.Screen name="ticket-completed" />
+        <Stack.Screen name="ticket-cancel" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="error" />
+        <Stack.Screen name="settings" />
+        <Stack.Screen name="help" />
+      </Stack>
     </ThemeProvider>
   );
 }
