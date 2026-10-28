@@ -16,6 +16,18 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npx expo start
    ```
 
+## Conectar con la API local
+
+La app usa `EXPO_PUBLIC_API_URL` (definida en `.env`) como URL base. Para un emulador Android, configura el host como `10.0.2.2` en lugar de `localhost`; para un teléfono físico, usa la IP local de la computadora y asegúrate de que ambos estén en la misma red.
+
+El flujo móvil utiliza estos endpoints:
+
+- `POST /api/v1/device-sessions` para crear una sesión persistida en el dispositivo.
+- `POST /api/v1/queues/:queueId/join` para obtener un turno.
+- `GET /api/v1/queues/my-tickets` para consultar los turnos de esa sesión.
+
+El QR debe contener el ID de la fila directamente, una URL con `queueId` (o `queue`/`id`) como parámetro, o una ruta con `/queue/:queueId` o `/queues/:queueId`.
+
 In the output, you'll find options to open the app in a
 
 - [development build](https://docs.expo.dev/develop/development-builds/introduction/)
